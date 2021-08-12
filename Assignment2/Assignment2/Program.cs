@@ -1,0 +1,186 @@
+﻿using System;
+
+class Office
+{
+    public string OfficeName { get; set; }
+    public string OfficeTelephone { get; set; }
+    public string OfficeAddress { get; set; }
+    public string OfficeID { get; set; }
+    private string _officeregisterationNumber;
+
+    public Office(string OfficeName, string OfficeNumber, string OfficeAddress, string OfficeID, string OfficeRegistration)
+    {
+        this.OfficeName = OfficeName;
+        this.OfficeTelephone = OfficeNumber;
+        this.OfficeAddress = OfficeAddress;
+        this.OfficeID = OfficeID;
+        SetOfficeRegisterationNumber(OfficeRegistration);
+    }
+
+    public void SetOfficeRegisterationNumber(string Number)
+    {
+        if (Number.Length == 8)
+        {
+            this._officeregisterationNumber = Number;
+
+        }
+        else
+        {
+            Console.WriteLine("Registration Number should be 8 digit long.");
+        }
+    }
+
+    public string GetOfficeRegisterationNumber()
+    {
+        return "XXX" + this._officeregisterationNumber.Substring(3);
+    }
+
+
+}
+class Department : Office
+{
+    public string DepartmentName { set; get; }
+    public string DepartmentID { set; get; }
+
+    public Department(string DeptName, string DeptID, string OfficeName, string OfficeNumber, string OfficeAddress, string OfficeID, string OfficeRegistration)
+        : base(OfficeName, OfficeNumber, OfficeAddress, OfficeID, OfficeRegistration)
+    {
+        this.DepartmentName = DeptName;
+        this.DepartmentID = DeptID;
+    }
+}
+
+class Employee : Department
+{
+    public string EmployeeName { set; get; }
+    public string EmployeeNumber { set; get; }
+    public string EmployeeID { set; get; }
+
+    public Employee(string EmpName, string EmpNumber, string EmpID, string DeptName, string DeptID, string OfficeName, string OfficeNumber, string OfficeAddress, string OfficeID, string OfficeRegistration)
+        : base(DeptName, DeptID, OfficeName, OfficeNumber, OfficeAddress, OfficeID, OfficeRegistration)
+    {
+        this.EmployeeName = EmpName;
+        this.EmployeeNumber = EmpNumber;
+        this.EmployeeID = EmpID;
+    }
+
+    public virtual void Details()
+    {
+        Console.WriteLine("Employee Details:");
+        Console.WriteLine($"ID: {this.EmployeeID}");
+        Console.WriteLine($"Name: {this.EmployeeName}");
+        Console.WriteLine($"Number: {this.EmployeeNumber}");
+    }
+
+}
+
+class FullTimeEmployee : Employee, ISalary
+{
+    public int Basic { set; get; }
+    public int HRA { set; get; }
+    public int Allowances { set; get; }
+    public static int ProfesionalTax = 200;
+    public double GrossSalary;
+    public double GrossDeduction;
+    public double NetSalary;
+
+    public FullTimeEmployee(string EmpName, string EmpNumber, string EmpID, string DeptName, string DeptID, string OfficeName, string OfficeNumber, string OfficeAddress, string OfficeID, string OfficeRegistration)
+        : base(EmpName, EmpNumber, EmpID, DeptName, DeptID, OfficeName, OfficeNumber, OfficeAddress, OfficeID, OfficeRegistration)
+    {
+
+    }
+
+    public FullTimeEmployee(int Basic, int HRA, int Allowances, string EmpName, string EmpNumber, string EmpID, string DeptName, string DeptID, string OfficeName, string OfficeNumber, string OfficeAddress, string OfficeID, string OfficeRegistration)
+        : base(EmpName, EmpNumber, EmpID, DeptName, DeptID, OfficeName, OfficeNumber, OfficeAddress, OfficeID, OfficeRegistration)
+    {
+        this.Basic = Basic;
+        this.HRA = HRA;
+        this.Allowances = Allowances;
+        CalculateSalary();
+    }
+
+    public void CalculateSalary()
+    {
+        this.GrossDeduction = (this.Basic * .12) * 2;
+        this.GrossSalary = this.Basic + this.HRA + this.Allowances + this.GrossDeduction;
+        this.NetSalary = this.GrossSalary - this.GrossDeduction;
+    }
+
+    public void GetSalary()
+    {
+        Console.WriteLine($"Gross Salary Per Month: {this.GrossSalary} Rs.");
+        Console.WriteLine($"Net Salary Per Month: {this.NetSalary} Rs.");
+
+        Console.WriteLine($"Gross Yearly Salary: {this.GrossSalary * 12} Rs.");
+        Console.WriteLine($"Net Yearly Salary: {this.NetSalary * 12} Rs.");
+    }
+
+
+    public override void Details()
+    {
+        base.Details();
+        this.GetSalary();
+    }
+}
+
+class PartTimeEmployee : Employee, ISalary
+{
+    public int WorkingHours { set; get; }
+    public double HourlyRate { set; get; }
+    public double Salary;
+
+
+    public PartTimeEmployee(string EmpName, string EmpNumber, string EmpID, string DeptName, string DeptID, string OfficeName, string OfficeNumber, string OfficeAddress, string OfficeID, string OfficeRegistration)
+        : base(EmpName, EmpNumber, EmpID, DeptName, DeptID, OfficeName, OfficeNumber, OfficeAddress, OfficeID, OfficeRegistration)
+    {
+    }
+
+    public PartTimeEmployee(int WorkingHours, double HourlyRate, string EmpName, string EmpNumber, string EmpID, string DeptName, string DeptID, string OfficeName, string OfficeNumber, string OfficeAddress, string OfficeID, string OfficeRegistration)
+        : base(EmpName, EmpNumber, EmpID, DeptName, DeptID, OfficeName, OfficeNumber, OfficeAddress, OfficeID, OfficeRegistration)
+    {
+        this.WorkingHours = WorkingHours;
+        this.HourlyRate = HourlyRate;
+        CalculateSalary();
+    }
+
+    public void CalculateSalary()
+    {
+        this.Salary = this.HourlyRate * this.WorkingHours;
+    }
+
+    public void GetSalary()
+    {
+        Console.WriteLine($"Your Hourly Salary: {this.Salary} Rs.");
+    }
+
+    public override void Details()
+    {
+        base.Details();
+        this.GetSalary();
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        FullTimeEmployee FTE = new FullTimeEmployee("John Doe", "+91-8772330182", "1", "Accounts", "ACC123", "IncubXperts", "+91-8394710374", "Karve Nagar", "IX123", "REGIX123")
+        { Basic = 5000, HRA = 3000, Allowances = 1200 };
+        FTE.CalculateSalary();
+        FTE.Details();
+        Console.WriteLine("\n\n");
+
+        PartTimeEmployee PTE = new PartTimeEmployee("Mark Smith", "+91-9972450171", "2", "HR", "HR123", "IncubXperts", "+91-8394710374", "Karve Nagar", "IX123", "REGIX123")
+        { HourlyRate = 50, WorkingHours = 12 };
+        PTE.CalculateSalary();
+        PTE.Details();
+    }
+}
+
+
+interface ISalary
+{
+
+    void CalculateSalary();
+    void GetSalary();
+}
