@@ -4,7 +4,14 @@ using System.Text;
 
 namespace Assignment4
 {
-    class PartialMethodDemo
+    public partial class PartialMethodDemo
     {
+        partial void PartialPrint();
+
+        public void Print()
+        {
+            PartialPrint();
+        }
+
     }
 }

@@ -4,7 +4,16 @@ using System.Text;
 
 namespace Assignment4
 {
-    class AbstractMethodDemo
+    public abstract class AbstractMethodDemo
     {
+        public abstract void Print();
+    }
+
+    public class AbstractDriver : AbstractMethodDemo
+    {
+        public override void Print()
+        {
+            Console.WriteLine("Abstract Print method implemented in AbstractDriver Class");
+        }
     }
 }
