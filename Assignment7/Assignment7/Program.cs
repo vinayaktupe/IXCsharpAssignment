@@ -9,7 +9,9 @@ namespace Assignment7
         {
             //new MultiCastDelegate();
             //new MultipleClassDelegateCall();
-            new EmployeeDelDriver();
+            //new EmployeeDelDriver();
+            //new AnonymousMethod();
+            new DifferentWaysOfDeclaringDelegates();
         }
     }
 }
