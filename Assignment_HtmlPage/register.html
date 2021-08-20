@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+			integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<title>Register</title>
+	</head>
+	<body>
+		<main class="container">
+			<section class="section__login">
+				<div class="card">
+					<div class="card__header">Register</div>
+					<div class="card__body">
+						<form action="#" class="login__form form" id="registerForm">
+							<div class="form__group">
+								<input
+									type="text"
+									name="firstName"
+									id="firstName"
+									placeholder="First Name"
+									class="form__input"
+									required
+									autofocus
+								/>
+								<input
+									type="text"
+									name="lastName"
+									id="lastName"
+									placeholder="Last Name"
+									class="form__input"
+									required
+								/>
+							</div>
+							<div class="form__group">
+								<input
+									type="email"
+									name="email"
+									id="email"
+									placeholder="Email ID"
+									class="form__input"
+									required
+								/>
+								<input
+									type="tel"
+									name="mobile"
+									id="mobile"
+									placeholder="Mobile Number"
+									class="form__input"
+									required
+								/>
+							</div>
+							<div class="form__group">
+								<input
+									type="password"
+									name="password"
+									id="password"
+									placeholder="Password"
+									class="form__input"
+									required
+									pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+									title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+								/>
+								<input
+									type="password"
+									name="passwordConfirm"
+									id="passwordConfirm"
+									placeholder="Confirm Password"
+									class="form__input"
+									required
+								/>
+								<div class="form__icon-password" id="passwordIconContainer">
+									<i class="form__icon-icon fa fa-eye" aria-hidden="true" id="passwordIcon"></i>
+								</div>
+								<!-- <i class="fa fa-eye-slash" aria-hidden="true"></i> -->
+							</div>
+							<div class="form__group">
+								<button type="submit" class="form__btn" id="registerFormBtn">Create Account</button>
+							</div>
+							<p class="text center mr__b-1">OR</p>
+							<div class="form__group">
+								<a href="./index.html" class="text btn center-item">Login</a>
+							</div>
+							<!-- <a href="" class="form__btn">Login</a> -->
+						</form>
+					</div>
+					<div class="card__footer"></div>
+				</div>
+			</section>
+		</main>
+	</body>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
+		integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"
+	></script>
+	<script src="./app.js"></script>
+</html>

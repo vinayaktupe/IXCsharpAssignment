@@ -1,0 +1,103 @@
+strong {
+	font-size: 1.5rem;
+}
+.italic {
+	font-style: italic;
+}
+
+.text {
+	font-size: 1rem !important;
+}
+.underline {
+	border-bottom: 1px solid currentColor;
+	width: max-content;
+}
+
+.btn {
+	&:link,
+	&:visited {
+		box-shadow: var(--neomorphism-inset);
+		width: max-content;
+		padding: 0.5rem 2rem;
+		border-radius: 0.5rem;
+	}
+	&:active {
+		box-shadow: var(--neomorphism-outset);
+	}
+}
+
+.center {
+	text-align: center !important;
+}
+.center-item {
+	margin: auto !important;
+}
+.mr {
+	&__t {
+		&-1 {
+			margin-top: 1rem !important;
+		}
+	}
+	&__b {
+		&-1 {
+			margin-bottom: 1rem !important;
+		}
+	}
+}
+
+.paragraph {
+	font-size: 1.3rem;
+	text-align: justify;
+	line-height: 1.5;
+	letter-spacing: 1px;
+	word-spacing: 1.5px;
+	padding: 1rem 1.5rem;
+	margin: 0.5rem;
+	word-break: keep-all;
+	font-weight: 400;
+}
+
+.row {
+	display: flex;
+	width: 100%;
+}
+
+.col {
+	padding: 1rem 0;
+	&-1 {
+		flex: 0 0 100%;
+	}
+
+	&-2 {
+		flex: 0 0 50%;
+	}
+
+	&-3 {
+		flex: 0 0 33.33%;
+	}
+}
+
+.figure {
+	&__img {
+		cursor: pointer;
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+		margin: 0.5rem;
+		padding: 1rem;
+	}
+
+	&__caption {
+		text-align: center;
+		font-size: 1.2rem;
+		font-weight: 300;
+		text-transform: capitalize;
+		font-style: italic;
+	}
+}
+
+.align_self {
+	&-center {
+		align-self: center;
+	}
+}

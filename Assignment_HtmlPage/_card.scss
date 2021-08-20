@@ -1,0 +1,33 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	font-size: 1.5rem;
+	// padding: 1.2rem;
+	background: rgba(45, 45, 45, 0.8);
+	color: var(--color-grey-light3);
+	border-radius: 2.5rem;
+
+	// box-shadow: -5px 5px 0px 0px rgba(120, 120, 120, 50%), -5px 5px 0px 0px rgba(120, 120, 120, 50%);
+	box-shadow: var(--neomorphism-inset);
+
+	& > * {
+		margin-top: 0.5rem;
+		padding: 1.5rem;
+		border-top: 0.1rem solid rgba(255, 255, 255, 0.5);
+	}
+	&__header {
+		font-size: 2.4rem;
+		text-align: center;
+		text-transform: uppercase;
+		margin: 0;
+		border-top: none;
+	}
+
+	&__body {
+		padding: 2.5rem;
+	}
+
+	&__footer {
+		padding: 2rem;
+	}
+}
