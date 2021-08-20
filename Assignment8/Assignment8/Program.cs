@@ -9,6 +9,7 @@ namespace Assignment8
     {
         static void Main(string[] args)
         {
+
             //STUDENT
             List<Student> students = new List<Student>();
             students.Add(new Student() { ID = 1, Name = "Ravi", Standard = "12", MarksSub1 = 40, MarksSub2 = 50, MarksSub3 = 55, MarksSub4 = 42 });
@@ -26,7 +27,7 @@ namespace Assignment8
             teachers.Add(new Teacher() { ClassName = "Third Year", ClassAttendance = 63 });
             teachers.Add(new Teacher() { ClassName = "Final Year", ClassAttendance = 76 });
 
-            //new Teacher().HasGoodAttendance(teachers, (Teacher teacher) => teacher.ClassAttendance > 75);
+            new Teacher().HasGoodAttendance(teachers, (Teacher teacher) => teacher.ClassAttendance > 75);
             List<Fees> fees = new List<Fees>();
             fees.Add(new Fees() { Year = 1, PersonName = "John", fee = 24500 });
             fees.Add(new Fees() { Year = 2, PersonName = "Mary", fee = 34000 });
@@ -34,7 +35,8 @@ namespace Assignment8
             fees.Add(new Fees() { Year = 3, PersonName = "Smith", fee = 10000 });
             fees.Add(new Fees() { Year = 2, PersonName = "Joan", fee = 20000 });
             fees.Add(new Fees() { Year = 1, PersonName = "Sam", fee = 15000 });
-            new Fees().HasPaidCompleteFees(fees, (Fees fee) => fee.Year == 1 && fee.fee < 25000);
+            //new Fees().HasPaidCompleteFees(fees, (Fees fee) => fee.Year == 1 && fee.fee < 25000);
+
         }
     }
 }
