@@ -18,19 +18,19 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" @*href="/Home/Index"*@ asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item nav-link" href="/Student/Index">Student</a>
+                        <a class="nav-item nav-link" asp-controller="Student" asp-action="Index">Student</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item nav-link" href="/Student/Name/0">Name</a>
+                        <a class="nav-item nav-link" asp-controller="Student" asp-action="Name" asp-route-id="1">Name</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item nav-link" href="/Student/Year">Year</a>
+                        <a class="nav-item nav-link" asp-controller="Student" asp-action="Year">Year</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-item nav-link" href="/Student/Create">Create</a>
+                        <a class="nav-item nav-link" asp-controller="Student" asp-action="Create">Create</a>
                     </li>
                 </ul>
             </div>
