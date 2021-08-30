@@ -4,11 +4,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HelloWorldWebApp
+namespace HelloWordWithMVCTemplate
 {
     public class Program
     {
@@ -21,9 +20,7 @@ namespace HelloWorldWebApp
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder
-                    //.UseWebRoot("demoroot")
-                    .UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }
