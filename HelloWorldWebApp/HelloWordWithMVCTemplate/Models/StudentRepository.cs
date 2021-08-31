@@ -24,5 +24,15 @@ namespace HelloWordWithMVCTemplate.Models
                 new Student() { ID = 10, Name = "Sam Son", Year = 2, Percentage = 45 }
             };
         }
+
+        public List<Student> GetAllStudents()
+        {
+            return _students;
+        }
+
+        public Student GetStudentById(int iD)
+        {
+            return _students.FirstOrDefault(s => s.ID == iD);
+        }
     }
 }
