@@ -83,16 +83,17 @@ namespace HelloWordWithMVCTemplate.Controllers
         // GET: StudentController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_repository.GetStudentById(id));
         }
 
         // POST: StudentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Student student)
         {
             try
             {
+                _repository.UpdateStudent(student);
                 return RedirectToAction(nameof(Index));
             }
             catch

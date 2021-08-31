@@ -49,5 +49,22 @@ namespace HelloWordWithMVCTemplate.Models
         {
             return _students.FirstOrDefault(s => s.ID == iD);
         }
+
+        public bool UpdateStudent(Student student)
+        {
+            try
+            {
+                Student s = _students.FirstOrDefault(stu => stu.ID == student.ID);
+                s.ID = student.ID;
+                s.Name = student.Name;
+                s.Year = student.Year;
+                s.Percentage = student.Percentage;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
