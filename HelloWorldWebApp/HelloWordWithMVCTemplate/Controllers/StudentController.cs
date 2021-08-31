@@ -79,12 +79,15 @@ namespace HelloWordWithMVCTemplate.Controllers
             try
             {
                 _repository.CreateStudent(student);
+                //COMMENT THIS TO SEE AddScoped and AddTransient methods demo
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
                 return View();
             }
+            //UNCOMMENT THIS WHILE COMMENTING ABOVE LINE OF CODE
+            //return View();
         }
 
         // GET: StudentController/Edit/5

@@ -1,5 +1,5 @@
 ﻿@model HelloWordWithMVCTemplate.Models.Student
-
+@inject IStudentRepository _studentRepo
 @{
     ViewData["Title"] = "Create";
 }
@@ -36,6 +36,9 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+    </div>
+    <div class="col-12">
+        Current Student Count: @_studentRepo.GetAllStudents().Count
     </div>
 </div>
 
