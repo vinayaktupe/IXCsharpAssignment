@@ -11,5 +11,6 @@ namespace HelloWordWithMVCTemplate.Models
         public Student GetStudentById(int iD);
         public bool CreateStudent(Student student);
         public bool UpdateStudent(Student student);
+        public bool DeleteStudent(int iD);
     }
 }

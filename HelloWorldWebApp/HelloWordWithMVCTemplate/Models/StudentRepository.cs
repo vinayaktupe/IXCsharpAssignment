@@ -40,6 +40,21 @@ namespace HelloWordWithMVCTemplate.Models
             return true;
         }
 
+        public bool DeleteStudent(int iD)
+        {
+            try
+            {
+                Student s = _students.FirstOrDefault(s => s.ID == iD);
+                _students.Remove(s);
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            return true;
+        }
+
         public List<Student> GetAllStudents()
         {
             return _students.OrderBy(student => student.ID).ToList<Student>();
