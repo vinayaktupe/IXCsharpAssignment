@@ -63,7 +63,7 @@ namespace HelloWordWithMVCTemplate.Models
         public Student GetStudentById(int iD)
         {
             //return _students.FirstOrDefault(s => s.ID == iD);
-            return from student in _students where student.ID == iD select student;
+            return (Student)(from student in _students where student.ID == iD select student);
         }
 
         public bool UpdateStudent(Student student)
