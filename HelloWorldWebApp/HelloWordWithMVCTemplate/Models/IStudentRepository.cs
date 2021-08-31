@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HelloWordWithMVCTemplate.Models
 {
-    interface IStudentRepository
+    public interface IStudentRepository
     {
         public List<Student> GetAllStudents();
         public Student GetStudentById(int iD);

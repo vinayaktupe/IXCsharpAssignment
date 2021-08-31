@@ -9,22 +9,29 @@ using System.Threading.Tasks;
 
 namespace HelloWordWithMVCTemplate.Controllers
 {
-    static class StudentHelper
-    {
-        public static IStudentRepository repository;
+    //static class StudentHelper
+    //{
+    //    public static IStudentRepository repository;
 
-        static StudentHelper()
-        {
-            repository = new StudentRepository();
-        }
-    }
+    //    static StudentHelper()
+    //    {
+    //        repository = new StudentRepository();
+    //    }
+    //}
     public class StudentController : Controller
     {
-        private IStudentRepository _repository;
+        //private IStudentRepository _repository;
 
-        public StudentController()
+        //public StudentController()
+        //{
+        //    _repository = StudentHelper.repository;
+        //}
+
+        private readonly IStudentRepository _repository = null;
+
+        public StudentController(IStudentRepository repository)
         {
-            _repository = StudentHelper.repository;
+            _repository = repository;
         }
 
         //public IActionResult Index()
