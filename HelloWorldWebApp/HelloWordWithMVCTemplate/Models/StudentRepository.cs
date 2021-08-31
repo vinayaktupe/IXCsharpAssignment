@@ -29,6 +29,9 @@ namespace HelloWordWithMVCTemplate.Models
         {
             try
             {
+                /*
+                 * Select LINQ Query is used to select field from the collection                
+                */
                 int maxID = _students.Select(s => s.ID).Max();
                 student.ID = maxID + 1;
                 _students.Add(student);
@@ -44,6 +47,10 @@ namespace HelloWordWithMVCTemplate.Models
         {
             try
             {
+                /*
+                 * FirstOrDefault Query returns the first apperance of the predicate match
+                 * and if no value matches then it returns the default value
+                 */
                 Student s = _students.FirstOrDefault(s => s.ID == iD);
                 _students.Remove(s);
             }
@@ -57,13 +64,16 @@ namespace HelloWordWithMVCTemplate.Models
 
         public List<Student> GetAllStudents()
         {
+            /*
+             * OrderBy Query returns the collection by sorting based on the field provided
+            */
             return _students.OrderBy(student => student.ID).ToList<Student>();
         }
 
         public Student GetStudentById(int iD)
         {
-            //return _students.FirstOrDefault(s => s.ID == iD);
-            return (Student)(from student in _students where student.ID == iD select student);
+            return _students.FirstOrDefault(s => s.ID == iD);
+
         }
 
         public bool UpdateStudent(Student student)
