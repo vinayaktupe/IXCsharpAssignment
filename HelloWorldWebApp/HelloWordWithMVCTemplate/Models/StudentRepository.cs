@@ -27,7 +27,7 @@ namespace HelloWordWithMVCTemplate.Models
 
         public List<Student> GetAllStudents()
         {
-            return _students;
+            return _students.OrderBy(student=>student.ID).ToList<Student>();
         }
 
         public Student GetStudentById(int iD)

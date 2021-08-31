@@ -47,7 +47,7 @@ namespace HelloWordWithMVCTemplate.Controllers
         // GET: StudentController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(_repository.GetStudentById(id));
         }
 
         // GET: StudentController/Create
