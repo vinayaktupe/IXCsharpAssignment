@@ -25,9 +25,24 @@ namespace HelloWordWithMVCTemplate.Models
             };
         }
 
+        public bool CreateStudent(Student student)
+        {
+            try
+            {
+                int maxID = _students.Select(s => s.ID).Max();
+                student.ID = maxID + 1;
+                _students.Add(student);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public List<Student> GetAllStudents()
         {
-            return _students.OrderBy(student=>student.ID).ToList<Student>();
+            return _students.OrderBy(student => student.ID).ToList<Student>();
         }
 
         public Student GetStudentById(int iD)

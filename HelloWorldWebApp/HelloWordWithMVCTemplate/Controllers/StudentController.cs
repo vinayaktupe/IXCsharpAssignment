@@ -9,14 +9,22 @@ using System.Threading.Tasks;
 
 namespace HelloWordWithMVCTemplate.Controllers
 {
+    static class StudentHelper
+    {
+        public static IStudentRepository repository;
+
+        static StudentHelper()
+        {
+            repository = new StudentRepository();
+        }
+    }
     public class StudentController : Controller
     {
-        private readonly ILogger<StudentController> _logger;
         private IStudentRepository _repository;
-        public StudentController(ILogger<StudentController> logger)
+
+        public StudentController()
         {
-            _logger = logger;
-            _repository = new StudentRepository();
+            _repository = StudentHelper.repository;
         }
 
         //public IActionResult Index()
@@ -59,10 +67,11 @@ namespace HelloWordWithMVCTemplate.Controllers
         // POST: StudentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Student student)
         {
             try
             {
+                _repository.CreateStudent(student);
                 return RedirectToAction(nameof(Index));
             }
             catch
