@@ -1,9 +1,9 @@
-﻿using HospitalManagementSystem.Areas.Users.Model;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using HospitalManagementSystem.Data.Model;
 
 namespace HospitalManagementSystem.Data
 {

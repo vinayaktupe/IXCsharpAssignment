@@ -19,7 +19,7 @@ namespace HospitalManagementSystem.Migrations.UserDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HospitalManagementSystem.Areas.Users.Model.User", b =>
+            modelBuilder.Entity("HospitalManagementSystem.Data.Model.User", b =>
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");

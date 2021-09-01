@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.Migrations.UserDb
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20210901103325_UserTable")]
-    partial class UserTable
+    [Migration("20210901113929_CreateUser")]
+    partial class CreateUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace HospitalManagementSystem.Migrations.UserDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HospitalManagementSystem.Areas.Users.Model.User", b =>
+            modelBuilder.Entity("HospitalManagementSystem.Data.Model.User", b =>
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
