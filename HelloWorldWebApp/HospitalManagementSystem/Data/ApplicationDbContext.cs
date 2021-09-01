@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using HospitalManagementSystem.Areas.Users.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,14 @@ namespace HospitalManagementSystem.Data
             : base(options)
         {
         }
+    }
+
+    public class UserDbContext : DbContext
+    {
+        public UserDbContext(DbContextOptions<UserDbContext> options)
+            : base(options)
+        {
+        }
+        public DbSet<User> Users { get; set; }
     }
 }
