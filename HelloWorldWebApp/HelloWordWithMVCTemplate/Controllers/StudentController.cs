@@ -133,5 +133,11 @@ namespace HelloWordWithMVCTemplate.Controllers
                 return View();
             }
         }
+
+        [Route("Student/GetStudent/{id}")]
+        public ActionResult GetStudent(int id)
+        {
+            return PartialView("~/Views/Student/_StudentDetailPartial.cshtml", _repository.GetStudentById(id));
+        }
     }
 }

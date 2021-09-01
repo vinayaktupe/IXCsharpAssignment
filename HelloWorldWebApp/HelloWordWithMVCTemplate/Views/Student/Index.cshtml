@@ -31,7 +31,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="studentTable">
         @foreach (var item in Model)
         {
             <tr>
@@ -50,9 +50,33 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                    <button class="btn btn-primary partialViewBtn" data-id="@item.ID">View Here</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+@section OtherSection{
+    <div id="partialViewBlock">
+        @{await Html.RenderPartialAsync("~/Views/Student/_StudentDetailPartial.cshtml", _studentRepo.GetStudentById(1));}
+    </div>
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#studentTable").click(function (event) {
+                if (event.target.classList.contains("partialViewBtn") && event.target.dataset.id != null) {
+                    $.ajax({
+                        url: `/Student/GetStudent/${event.target.dataset.id}`,
+                        dataType: "html",
+                        success: function (result) {
+                            $("#partialViewBlock").html(result)
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
