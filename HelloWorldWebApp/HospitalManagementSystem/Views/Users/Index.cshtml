@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<HospitalManagementSystem.Data.Model.User>
+@using HospitalManagementSystem.Data.Model;
 
 @{
     ViewData["Title"] = "Index";
+    List<User> Model = (List<User>)ViewData["Users"];
 }
 
 <h1>Index</h1>

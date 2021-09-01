@@ -22,7 +22,9 @@ namespace HospitalManagementSystem.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            //PASSING MODEL TO VIEW USING ViewData
+            ViewData["Users"] = await _context.Users.ToListAsync();
+            return View();
         }
 
         // GET: Users/Details/5
@@ -40,7 +42,9 @@ namespace HospitalManagementSystem.Controllers
                 return NotFound();
             }
 
-            return View(user);
+            //PASSING MODEL TO VIEW USING ViewBag
+            ViewBag.User = user;
+            return View();
         }
 
         // GET: Users/Create
