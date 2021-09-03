@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
 {
     [DbContext(typeof(UserDefinedDbContext))]
-    [Migration("20210903073305_UserDefinedTables")]
+    [Migration("20210903110003_UserDefinedTables")]
     partial class UserDefinedTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,10 +32,16 @@ namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<int>("YOE")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Doctors");
                 });
@@ -54,7 +60,7 @@ namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 9, 3, 13, 3, 5, 686, DateTimeKind.Local).AddTicks(9678));
+                        .HasDefaultValue(new DateTime(2021, 9, 3, 16, 30, 3, 443, DateTimeKind.Local).AddTicks(5235));
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -80,6 +86,15 @@ namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
                     b.HasKey("ID");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("HospitalManagementSystem.DAL.Data.Model.Doctor", b =>
+                {
+                    b.HasOne("HospitalManagementSystem.DAL.Data.Model.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

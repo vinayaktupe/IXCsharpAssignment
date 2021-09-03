@@ -26,6 +26,7 @@ namespace HospitalManagementSystem.Controllers
         {
             //PASSING MODEL TO VIEW USING ViewData
             ViewData["Users"] = await _context.Users.Where(user => user.IsActive != false).ToListAsync();
+            ViewBag.Users = await _context.Users.Where(user => user.IsActive != false).ToListAsync();
             return View();
         }
 
@@ -40,7 +41,7 @@ namespace HospitalManagementSystem.Controllers
             var user = await _context.Users
                 .FirstOrDefaultAsync(m => m.ID == id);
             var doctor = await _context.Doctors
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.User.ID == id);
 
             UserDoctorDetailsViewModel viewModel = new UserDoctorDetailsViewModel() { Doctor = doctor, User = user };
             if (user == null)
@@ -68,20 +69,25 @@ namespace HospitalManagementSystem.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(user);
-                await _context.SaveChangesAsync();
+
+
                 if (user.Role == Role.Doctor)
                 {
                     Doctor doctor = new Doctor()
                     {
-                        //ID = Convert.ToInt32(form["ID"]),
+                        User = user,
                         YOE = Convert.ToInt32(form["Doctor.YOE"]),
                         Specialization = form["Doctor.Specialization"]
                     };
+
                     _context.Add(doctor);
-                    await _context.SaveChangesAsync();
                 }
+
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(user);
         }
 
@@ -92,19 +98,20 @@ namespace HospitalManagementSystem.Controllers
             {
                 return NotFound();
             }
+            UserDoctorDetailsViewModel model = new UserDoctorDetailsViewModel();
 
-            var user = await _context.Users.FindAsync(id);
-            if (user.Role == Role.Doctor)
+            model.User = await _context.Users.FindAsync(id);
+            if (model.User.Role == Role.Doctor)
             {
-                var doctor = await _context.Doctors.FindAsync(id);
-                UserDoctorDetailsViewModel model = new UserDoctorDetailsViewModel() { User = user, Doctor = doctor };
+                model.Doctor = await _context.Doctors.FindAsync(id);
                 return View(model);
             }
-            if (user == null)
+            if (model.User == null)
             {
                 return NotFound();
             }
-            return View(user);
+
+            return View(model);
         }
 
         // POST: Users/Edit/5
@@ -128,7 +135,7 @@ namespace HospitalManagementSystem.Controllers
                     await _context.SaveChangesAsync();
                     if (user.Role == Role.Doctor)
                     {
-                        var doctor = await _context.Doctors.FirstAsync(doctor => doctor.ID == user.ID);
+                        var doctor = await _context.Doctors.FirstAsync(doctor => doctor.User.ID == user.ID);
                         doctor.YOE = Convert.ToInt32(form["Doctor.YOE"]);
                         doctor.Specialization = form["Doctor.Specialization"];
                         _context.Doctors.Update(doctor);

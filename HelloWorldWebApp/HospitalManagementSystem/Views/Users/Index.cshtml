@@ -2,7 +2,9 @@
 
 @{
     ViewData["Title"] = "Index";
+    //Passing List to ViewBag and ViewData
     List<User> Model = (List<User>)ViewData["Users"];
+    List<User> users = ViewBag.Users;
 }
 
 <h1>Index</h1>
