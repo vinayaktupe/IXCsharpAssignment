@@ -1,0 +1,12 @@
+﻿@model HospitalManagementSystem.ViewModel.UserDoctorDetailsViewModel
+
+<div class="form-group">
+    <label asp-for="Doctor.Specialization" class="control-label"></label>
+    <input asp-for="Doctor.Specialization" class="form-control" />
+    <span asp-validation-for="Doctor.Specialization" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Doctor.YOE" class="control-label"></label>
+    <input asp-for="Doctor.YOE" class="form-control" />
+    <span asp-validation-for="Doctor.YOE" class="text-danger"></span>
+</div>

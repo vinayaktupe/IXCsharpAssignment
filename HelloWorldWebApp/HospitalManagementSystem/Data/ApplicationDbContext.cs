@@ -22,5 +22,20 @@ namespace HospitalManagementSystem.Data
         {
         }
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().Property(u => u.IsActive).HasDefaultValue(true);
+            modelBuilder.Entity<User>().Property(u => u.CreatedAt).HasDefaultValue(DateTime.Now);
+        }
+    }
+
+    public class DoctorDbContext : DbContext
+    {
+        public DoctorDbContext(DbContextOptions<DoctorDbContext> options)
+            : base(options)
+        {
+        }
+        public DbSet<Doctor> Doctors { get; set; }
     }
 }
