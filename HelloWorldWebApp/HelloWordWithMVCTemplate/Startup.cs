@@ -29,7 +29,7 @@ namespace HelloWordWithMVCTemplate
             /*
              * AddSingleton: This method create one instance of the Repository and provides that instance to the class or method in need.
              */
-            services.AddSingleton<IStudentRepository, StudentRepository>();
+            //services.AddSingleton<IStudentRepository, StudentRepository>();
 
             /*
              * AddScoped: This method create instance within the scope of current request but when new request comes in then new iinstace 
@@ -40,7 +40,7 @@ namespace HelloWordWithMVCTemplate
             /*
              * AddTransient: This method creates instance everytime request comes irrepective of scope
              */
-            //services.AddTransient<IStudentRepository, StudentRepository>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

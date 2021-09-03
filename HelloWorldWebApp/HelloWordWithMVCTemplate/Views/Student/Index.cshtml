@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<HelloWordWithMVCTemplate.Models.Student>
-@inject IStudentRepository _studentRepo
+@*@inject IStudentRepository _studentRepo*@
 
 @{
     ViewData["Title"] = "Index";
@@ -11,7 +11,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 <p>
-    Total Students: @_studentRepo.GetAllStudents().Count
+    @*Total Students: @_studentRepo.GetAllStudents().Count*@
 </p>
 <table class="table">
     <thead>
@@ -57,7 +57,7 @@
         }
     </tbody>
 </table>
-@section OtherSection{
+@*@section OtherSection{
     <div id="partialViewBlock">
         @{await Html.RenderPartialAsync("~/Views/Student/_StudentDetailPartial.cshtml", _studentRepo.GetStudentById(1));}
     </div>
@@ -79,4 +79,4 @@
             });
         });
     </script>
-}
+}*@

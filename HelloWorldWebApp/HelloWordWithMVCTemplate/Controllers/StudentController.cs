@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,10 +29,14 @@ namespace HelloWordWithMVCTemplate.Controllers
         //}
 
         private readonly IStudentRepository _repository = null;
+        private readonly IStudentRepository _repository1 = null;
 
-        public StudentController(IStudentRepository repository)
+        public StudentController(IStudentRepository repository, IStudentRepository repository1)
         {
             _repository = repository;
+            Debug.WriteLine("Repository Object 1");
+            _repository1 = repository1;
+            Debug.WriteLine("Repository Object 2");
         }
 
         //public IActionResult Index()
@@ -57,7 +62,7 @@ namespace HelloWordWithMVCTemplate.Controllers
         public ActionResult Index()
         {
             return View(_repository.GetAllStudents());
-        }
+            }
 
         // GET: StudentController/Details/5
         public ActionResult Details(int id)
