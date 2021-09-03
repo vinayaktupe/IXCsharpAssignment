@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HospitalManagementSystem.Data;
-using HospitalManagementSystem.Data.Model;
+using HospitalManagementSystem.DAL.Data.Model;
 using Microsoft.AspNetCore.Http;
 using HospitalManagementSystem.ViewModel;
 
@@ -14,13 +14,11 @@ namespace HospitalManagementSystem.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly UserDbContext _context;
-        private readonly DoctorDbContext _doctorContext;
+        private readonly UserDefinedDbContext _context;
 
-        public UsersController(UserDbContext context, DoctorDbContext doctorContext)
+        public UsersController(UserDefinedDbContext context)
         {
             _context = context;
-            _doctorContext = doctorContext;
         }
 
         // GET: Users
@@ -41,7 +39,7 @@ namespace HospitalManagementSystem.Controllers
 
             var user = await _context.Users
                 .FirstOrDefaultAsync(m => m.ID == id);
-            var doctor = await _doctorContext.Doctors
+            var doctor = await _context.Doctors
                 .FirstOrDefaultAsync(m => m.ID == id);
 
             UserDoctorDetailsViewModel viewModel = new UserDoctorDetailsViewModel() { Doctor = doctor, User = user };
@@ -60,7 +58,6 @@ namespace HospitalManagementSystem.Controllers
         {
             return View();
         }
-
         // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -80,8 +77,8 @@ namespace HospitalManagementSystem.Controllers
                         YOE = Convert.ToInt32(form["Doctor.YOE"]),
                         Specialization = form["Doctor.Specialization"]
                     };
-                    _doctorContext.Add(doctor);
-                    await _doctorContext.SaveChangesAsync();
+                    _context.Add(doctor);
+                    await _context.SaveChangesAsync();
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -99,7 +96,7 @@ namespace HospitalManagementSystem.Controllers
             var user = await _context.Users.FindAsync(id);
             if (user.Role == Role.Doctor)
             {
-                var doctor = await _doctorContext.Doctors.FindAsync(id);
+                var doctor = await _context.Doctors.FindAsync(id);
                 UserDoctorDetailsViewModel model = new UserDoctorDetailsViewModel() { User = user, Doctor = doctor };
                 return View(model);
             }
@@ -131,11 +128,11 @@ namespace HospitalManagementSystem.Controllers
                     await _context.SaveChangesAsync();
                     if (user.Role == Role.Doctor)
                     {
-                        var doctor = await _doctorContext.Doctors.FirstAsync(doctor => doctor.ID == user.ID);
+                        var doctor = await _context.Doctors.FirstAsync(doctor => doctor.ID == user.ID);
                         doctor.YOE = Convert.ToInt32(form["Doctor.YOE"]);
                         doctor.Specialization = form["Doctor.Specialization"];
-                        _doctorContext.Doctors.Update(doctor);
-                        await _doctorContext.SaveChangesAsync();
+                        _context.Doctors.Update(doctor);
+                        await _context.SaveChangesAsync();
                     }
                 }
                 catch (DbUpdateConcurrencyException)

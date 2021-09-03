@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace HospitalManagementSystem.Migrations
+namespace HospitalManagementSystem.DAL.Migrations
 {
     public partial class init : Migration
     {

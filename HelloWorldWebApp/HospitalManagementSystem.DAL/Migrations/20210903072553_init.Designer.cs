@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace HospitalManagementSystem.Migrations
+namespace HospitalManagementSystem.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210901113810_init")]
+    [Migration("20210903072553_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

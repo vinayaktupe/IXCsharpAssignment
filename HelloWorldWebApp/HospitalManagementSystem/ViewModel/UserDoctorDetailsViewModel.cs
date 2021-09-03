@@ -1,4 +1,4 @@
-﻿using HospitalManagementSystem.Data.Model;
+﻿using HospitalManagementSystem.DAL.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

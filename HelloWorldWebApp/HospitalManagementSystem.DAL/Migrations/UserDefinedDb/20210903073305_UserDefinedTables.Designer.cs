@@ -4,14 +4,16 @@ using HospitalManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace HospitalManagementSystem.Migrations.UserDb
+namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
 {
-    [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UserDefinedDbContext))]
+    [Migration("20210903073305_UserDefinedTables")]
+    partial class UserDefinedTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,26 @@ namespace HospitalManagementSystem.Migrations.UserDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HospitalManagementSystem.Data.Model.User", b =>
+            modelBuilder.Entity("HospitalManagementSystem.DAL.Data.Model.Doctor", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Specialization")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("YOE")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Doctors");
+                });
+
+            modelBuilder.Entity("HospitalManagementSystem.DAL.Data.Model.User", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -33,7 +54,7 @@ namespace HospitalManagementSystem.Migrations.UserDb
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 9, 2, 20, 40, 31, 240, DateTimeKind.Local).AddTicks(8277));
+                        .HasDefaultValue(new DateTime(2021, 9, 3, 13, 3, 5, 686, DateTimeKind.Local).AddTicks(9678));
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
