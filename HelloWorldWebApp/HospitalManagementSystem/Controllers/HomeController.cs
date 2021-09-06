@@ -20,11 +20,23 @@ namespace HospitalManagementSystem.Controllers
 
         public IActionResult Index()
         {
+            TempData["Foo"] = "Hello Foo! From Temp Data";
+            ViewData["Foo"] = "Hello Foo! From View Data";
+            ViewBag.Foo = "Hello Foo! From View Bag";
+
+            _logger.LogInformation($"View Data for Foo: {ViewData["Foo"]}");
+            _logger.LogInformation($"View Bag for Foo: {ViewBag.Foo}");
+            _logger.LogInformation($"Temp Data for Foo: {TempData["Foo"]}");
+            TempData.Keep();
+
             return View();
         }
 
         public IActionResult Privacy()
         {
+            _logger.LogInformation($"View Data for Foo: {ViewData["Foo"]}");
+            _logger.LogInformation($"View Bag for Foo: {ViewBag.Foo}");
+            _logger.LogInformation($"Temp Data for Foo: {TempData["Foo"]}");
             return View();
         }
 

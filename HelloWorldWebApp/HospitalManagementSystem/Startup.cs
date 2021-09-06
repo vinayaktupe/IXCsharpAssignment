@@ -41,8 +41,8 @@ namespace HospitalManagementSystem
             #endregion
 
             #region Services Inject
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IDoctorService, DoctorService>();
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IDoctorService, DoctorService>();
             #endregion
 
             services.AddControllersWithViews();

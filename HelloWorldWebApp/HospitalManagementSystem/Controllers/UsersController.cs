@@ -10,17 +10,21 @@ using HospitalManagementSystem.DAL.Data.Model;
 using Microsoft.AspNetCore.Http;
 using HospitalManagementSystem.ViewModel;
 using HospitalManagementSystem.Services.Services;
+using Microsoft.Extensions.Logging;
 
 namespace HospitalManagementSystem.Controllers
 {
     public class UsersController : Controller
     {
+        private readonly ILogger<UsersController> _logger;
+
         //private readonly UserDefinedDbContext _context;
         private readonly IDoctorService _doctor;
         private readonly IUserService _user;
 
-        public UsersController(/*UserDefinedDbContext context,*/ IDoctorService doctor, IUserService user)
+        public UsersController(/*UserDefinedDbContext context,*/ ILogger<UsersController> logger, IDoctorService doctor, IUserService user)
         {
+            _logger = logger;
             //_context = context;
             _doctor = doctor;
             _user = user;
@@ -34,6 +38,12 @@ namespace HospitalManagementSystem.Controllers
             //ViewBag.Users = await _context.Users.Where(user => user.IsActive != false).ToListAsync();
             ViewData["Users"] = await _user.GetAllUsers();
             ViewBag.Users = await _user.GetAllUsers();
+
+            _logger.LogInformation($"View Data for Foo: {ViewData["Foo"]}");
+            _logger.LogInformation($"View Bag for Foo: {ViewBag.Foo}");
+            _logger.LogInformation($"Temp Data for Foo: {TempData["Foo"]}");
+            TempData.Keep();
+
             return View();
         }
 
