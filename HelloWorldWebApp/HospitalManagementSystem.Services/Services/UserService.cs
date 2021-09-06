@@ -21,18 +21,21 @@ namespace HospitalManagementSystem.Services.Services
 
     public class UserService : IUserService
     {
-        private readonly UserDefinedDbContext _context;
+        //private readonly UserDefinedDbContext _context;
 
-        public UserService(UserDefinedDbContext context)
-        {
-            _context = context;
-        }
+        //public UserService(UserDefinedDbContext context)
+        //{
+        //    _context = context;
+        //}
 
         public async Task<AppUser> CreateUser(AppUser user)
         {
-            _context.Add(user);
-            await _context.SaveChangesAsync();
-            return user;
+            using (var _context = new UserDefinedDbContext())
+            {
+                _context.Add(user);
+                await _context.SaveChangesAsync();
+                return user;
+            }
 
         }
 
@@ -40,10 +43,13 @@ namespace HospitalManagementSystem.Services.Services
         {
             try
             {
-                var user = await _context.Users.FindAsync(Id);
-                user.IsActive = false;
-                _context.Update(user);
-                await _context.SaveChangesAsync();
+                using (var _context = new UserDefinedDbContext())
+                {
+                    var user = await _context.Users.FindAsync(Id);
+                    user.IsActive = false;
+                    _context.Update(user);
+                    await _context.SaveChangesAsync();
+                }
             }
             catch (Exception)
             {
@@ -57,25 +63,37 @@ namespace HospitalManagementSystem.Services.Services
             //using (var UserContext = new UserDefinedDbContext())
             //{
             //}
-            return await _context.Users.Where(user => user.IsActive != false).ToListAsync();
+            using (var _context = new UserDefinedDbContext())
+            {
+                return await _context.Users.Where(user => user.IsActive != false).ToListAsync();
+            }
         }
 
         public async Task<AppUser> GetUserByID(int Id)
         {
-            return await _context.Users.FirstOrDefaultAsync(user => user.ID == Id);
+            using (var _context = new UserDefinedDbContext())
+            {
+                return await _context.Users.FirstOrDefaultAsync(user => user.ID == Id);
+            }
         }
 
         public async Task<AppUser> UpdateUser(AppUser user)
         {
-            user.IsActive = true;
-            _context.Update(user);
-            await _context.SaveChangesAsync();
-            return user;
+            using (var _context = new UserDefinedDbContext())
+            {
+                user.IsActive = true;
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+                return user;
+            }
         }
 
         public bool UserExists(int Id)
         {
-            return _context.Users.Any(e => e.ID == Id);
+            using (var _context = new UserDefinedDbContext())
+            {
+                return _context.Users.Any(e => e.ID == Id);
+            }
         }
     }
 }

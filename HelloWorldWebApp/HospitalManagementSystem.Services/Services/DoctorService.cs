@@ -19,18 +19,21 @@ namespace HospitalManagementSystem.Services.Services
     }
     public class DoctorService : IDoctorService
     {
-        private readonly UserDefinedDbContext _context;
+        //private readonly UserDefinedDbContext _context;
 
-        public DoctorService(UserDefinedDbContext context)
-        {
-            _context = context;
-        }
+        //public DoctorService(UserDefinedDbContext context)
+        //{
+        //    _context = context;
+        //}
 
         public async Task<Doctor> CreateDoctor(Doctor doctor)
         {
-            _context.Add(doctor);
-            await _context.SaveChangesAsync();
-            return doctor;
+            using (var _context = new UserDefinedDbContext())
+            {
+                _context.Add(doctor);
+                await _context.SaveChangesAsync();
+                return doctor;
+            }
         }
 
         public async Task<bool> DeleteDoctor(int Id)
@@ -40,20 +43,29 @@ namespace HospitalManagementSystem.Services.Services
 
         public async Task<List<Doctor>> GetAllDoctors()
         {
-            return await _context.Doctors.ToListAsync();
+            using (var _context = new UserDefinedDbContext())
+            {
+                return await _context.Doctors.ToListAsync();
+            }
         }
 
         public async Task<Doctor> GetDoctorByID(int Id)
         {
-            return await _context.Doctors
+            using (var _context = new UserDefinedDbContext())
+            {
+                return await _context.Doctors
                 .FirstOrDefaultAsync(m => m.User.ID == Id);
+            }
         }
 
         public async Task<Doctor> UpdateDoctor(Doctor doctor)
         {
-            _context.Doctors.Update(doctor);
-            await _context.SaveChangesAsync();
-            return doctor;
+            using (var _context = new UserDefinedDbContext())
+            {
+                _context.Doctors.Update(doctor);
+                await _context.SaveChangesAsync();
+                return doctor;
+            }
         }
     }
 }

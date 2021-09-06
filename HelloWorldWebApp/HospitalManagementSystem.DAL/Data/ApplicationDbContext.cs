@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using HospitalManagementSystem.DAL.Data.Model;
 using System;
-using Microsoft.Extensions.Configuration;
 
 namespace HospitalManagementSystem.Data
 {
@@ -18,15 +17,9 @@ namespace HospitalManagementSystem.Data
 
     public class UserDefinedDbContext : DbContext
     {
-        private readonly IConfiguration configuration;
 
         public UserDefinedDbContext()
         {
-        }
-
-        public UserDefinedDbContext(IConfiguration configuration)
-        {
-            this.configuration = configuration;
         }
 
         public UserDefinedDbContext(DbContextOptions<UserDefinedDbContext> options)
@@ -46,7 +39,7 @@ namespace HospitalManagementSystem.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                optionsBuilder.UseSqlServer("Server=vinayakt\\SQLEXPRESS;Database=HospitalManagementSystem;Trusted_Connection=True;MultipleActiveResultSets=true");
             }
         }
     }
