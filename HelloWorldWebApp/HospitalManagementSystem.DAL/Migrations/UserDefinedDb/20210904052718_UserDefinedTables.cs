@@ -16,11 +16,11 @@ namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
                     Number = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: false),
                     Role = table.Column<int>(nullable: false),
-                    CreatedAt = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2021, 9, 3, 16, 30, 3, 443, DateTimeKind.Local).AddTicks(5235)),
+                    CreatedAt = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2021, 9, 4, 10, 57, 17, 851, DateTimeKind.Local).AddTicks(8391)),
                     CreatedBy = table.Column<string>(nullable: true),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false, defaultValue: true)
+                    IsActive = table.Column<bool>(nullable: true, defaultValue: true)
                 },
                 constraints: table =>
                 {

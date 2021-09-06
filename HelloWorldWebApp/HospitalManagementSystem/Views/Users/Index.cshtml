@@ -1,10 +1,10 @@
-﻿@model IEnumerable<User>
+﻿@model IEnumerable<AppUser>
 
 @{
     ViewData["Title"] = "Index";
     //Passing List to ViewBag and ViewData
-    List<User> Model = (List<User>)ViewData["Users"];
-    List<User> users = ViewBag.Users;
+    List<AppUser> Model = (List<AppUser>)ViewData["Users"];
+    List<AppUser> users = ViewBag.Users;
 }
 
 <h1>Index</h1>

@@ -1,4 +1,5 @@
 using HospitalManagementSystem.Data;
+using HospitalManagementSystem.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,8 +36,13 @@ namespace HospitalManagementSystem
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => { options.SignIn.RequireConfirmedAccount = true; options.User.RequireUniqueEmail = true; })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            #endregion
+
+            #region Services Inject
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IDoctorService, DoctorService>();
             #endregion
 
             services.AddControllersWithViews();

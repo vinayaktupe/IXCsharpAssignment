@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 namespace HospitalManagementSystem.DAL.Data.Model
 {
-    public class User
+    [Table("Users")]
+    public class AppUser
     {
+
         public int ID { get; set; }
         [Required(ErrorMessage = "Please provide number")]
         public string Number { get; set; }
@@ -18,7 +22,7 @@ namespace HospitalManagementSystem.DAL.Data.Model
         public string CreatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
     }
 
     public enum Role

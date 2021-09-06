@@ -8,7 +8,7 @@ namespace HospitalManagementSystem.ViewModel
 {
     public class UserDoctorDetailsViewModel
     {
-        public User User { get; set; }
+        public AppUser User { get; set; }
         public Doctor Doctor { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace HospitalManagementSystem.DAL.Data.Model
         public int ID { get; set; }
         [Required]
         [ForeignKey("UserID")]
-        public User User { get; set; }
+        public AppUser User { get; set; }
         [Required(ErrorMessage = "Please provide Specialization")]
         public string Specialization { get; set; }
         [Required(ErrorMessage = "Please provide Years of Experience")]
