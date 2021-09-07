@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
 {
     [DbContext(typeof(UserDefinedDbContext))]
-    [Migration("20210904052718_UserDefinedTables")]
-    partial class UserDefinedTables
+    [Migration("20210907093450_UserTables")]
+    partial class UserTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,7 @@ namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 9, 4, 10, 57, 17, 851, DateTimeKind.Local).AddTicks(8391));
+                        .HasDefaultValue(new DateTime(2021, 9, 7, 15, 4, 50, 649, DateTimeKind.Local).AddTicks(571));
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -74,8 +74,7 @@ namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserID")
-                        .IsRequired()
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.Property<int>("YOE")
@@ -91,7 +90,7 @@ namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
             modelBuilder.Entity("HospitalManagementSystem.DAL.Data.Model.Doctor", b =>
                 {
                     b.HasOne("HospitalManagementSystem.DAL.Data.Model.AppUser", "User")
-                        .WithMany()
+                        .WithMany("Doctor")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

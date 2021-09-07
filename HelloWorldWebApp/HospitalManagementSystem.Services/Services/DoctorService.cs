@@ -54,7 +54,8 @@ namespace HospitalManagementSystem.Services.Services
             using (var _context = new UserDefinedDbContext())
             {
                 return await _context.Doctors
-                .FirstOrDefaultAsync(m => m.User.ID == Id);
+                .Include("Users")
+                .FirstOrDefaultAsync(m => m.UserID == Id);
             }
         }
 

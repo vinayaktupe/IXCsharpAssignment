@@ -59,14 +59,17 @@ namespace HospitalManagementSystem.Controllers
             //    .FirstOrDefaultAsync(m => m.ID == id);
             //var doctor = await _context.Doctors
             //    .FirstOrDefaultAsync(m => m.User.ID == id);
-            var user = await _user.GetUserByID(id);
             var doctor = await _doctor.GetDoctorByID(id);
 
-            UserDoctorDetailsViewModel viewModel = new UserDoctorDetailsViewModel() { Doctor = doctor, User = user };
-            if (user == null)
+            UserDoctorDetailsViewModel viewModel = new UserDoctorDetailsViewModel()
             {
-                return NotFound();
-            }
+                ID = doctor.ID,
+                Number = doctor.Users?.Number,
+                Role = doctor.Users.Role,
+                Address = doctor.Users?.Address,
+                Specialization = doctor.Specialization,
+                YOE = doctor.YOE
+            };
 
             ////PASSING MODEL TO VIEW USING ViewBag
             //ViewBag.User = user;
@@ -95,9 +98,9 @@ namespace HospitalManagementSystem.Controllers
                 {
                     Doctor doctor = new Doctor()
                     {
-                        User = user,
-                        YOE = Convert.ToInt32(form["Doctor.YOE"]),
-                        Specialization = form["Doctor.Specialization"]
+                        UserID = user.ID,
+                        YOE = Convert.ToInt32(form["YOE"]),
+                        Specialization = form["Specialization"]
                     };
 
                     //_context.Add(doctor);
@@ -119,22 +122,29 @@ namespace HospitalManagementSystem.Controllers
             {
                 return NotFound();
             }
-            UserDoctorDetailsViewModel model = new UserDoctorDetailsViewModel();
 
             //model.User = await _context.Users.FindAsync(id);
-            model.User = await _user.GetUserByID(id);
-            if (model.User.Role == Role.Doctor)
-            {
-                //model.Doctor = await _context.Doctors.FindAsync(id);
-                model.Doctor = await _doctor.GetDoctorByID(id);
-                return View(model);
-            }
-            if (model.User == null)
+            var user = await _doctor.GetDoctorByID(id);
+            if (user == null)
             {
                 return NotFound();
             }
+            if (user.Users.Role == Role.Doctor)
+            {
+                //model.Doctor = await _context.Doctors.FindAsync(id);
+                UserDoctorDetailsViewModel viewModel = new UserDoctorDetailsViewModel()
+                {
+                    ID = user.ID,
+                    Number = user.Users.Number,
+                    Role = user.Users.Role,
+                    Address = user.Users.Address,
+                    Specialization = user.Specialization,
+                    YOE = user.YOE
+                };
+                return View(viewModel);
+            }
 
-            return View(model);
+            return NotFound();
         }
 
         // POST: Users/Edit/5

@@ -13,23 +13,23 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="User.ID" />
+            <input type="hidden" asp-for="ID" />
             <div class="form-group">
-                <label asp-for="User.Number" class="control-label"></label>
-                <input asp-for="User.Number" class="form-control" />
-                <span asp-validation-for="User.Number" class="text-danger"></span>
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User.Address" class="control-label"></label>
-                <input asp-for="User.Address" class="form-control" />
-                <span asp-validation-for="User.Address" class="text-danger"></span>
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User.Role" class="control-label"></label>
-                <select asp-for="User.Role" class="form-control" id="SelectRole" asp-items="Html.GetEnumSelectList<role>()">
+                <label asp-for="Role" class="control-label"></label>
+                <select asp-for="Role" class="form-control" id="SelectRole" asp-items="Html.GetEnumSelectList<role>()">
                     <option value="-1" selected disabled>Select User Type</option>
                 </select>
-                <span asp-validation-for="User.Role" class="text-danger"></span>
+                <span asp-validation-for="Role" class="text-danger"></span>
             </div>
             <partial name="~/Views/Users/Doctors/_DoctorFormPartial.cshtml" />
             @*<div class="form-group">

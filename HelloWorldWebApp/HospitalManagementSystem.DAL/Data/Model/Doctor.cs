@@ -9,13 +9,21 @@ namespace HospitalManagementSystem.DAL.Data.Model
 {
     public class Doctor
     {
+        [Key]
         public int ID { get; set; }
-        [Required]
-        [ForeignKey("UserID")]
-        public AppUser User { get; set; }
+
+        public int UserID { get; set; }
+
+        //public AppUser User { get; set; }
         [Required(ErrorMessage = "Please provide Specialization")]
         public string Specialization { get; set; }
+
         [Required(ErrorMessage = "Please provide Years of Experience")]
+        [Display(Name = "Years of Experience")]
         public int YOE { get; set; }
+
+        [ForeignKey(nameof(UserID))]
+        [InverseProperty("Doctor")]
+        public virtual AppUser Users { get; set; }
     }
 }

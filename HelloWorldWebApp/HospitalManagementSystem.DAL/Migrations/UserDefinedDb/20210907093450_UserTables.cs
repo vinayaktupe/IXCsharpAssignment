@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
 {
-    public partial class UserDefinedTables : Migration
+    public partial class UserTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace HospitalManagementSystem.DAL.Migrations.UserDefinedDb
                     Number = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: false),
                     Role = table.Column<int>(nullable: false),
-                    CreatedAt = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2021, 9, 4, 10, 57, 17, 851, DateTimeKind.Local).AddTicks(8391)),
+                    CreatedAt = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2021, 9, 7, 15, 4, 50, 649, DateTimeKind.Local).AddTicks(571)),
                     CreatedBy = table.Column<string>(nullable: true),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(nullable: true),
