@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HospitalManagementSystem", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HospitalManagementSystem.DAL", "HospitalManagementSystem.DAL\HospitalManagementSystem.DAL.csproj", "{E69C8D06-3FF1-4316-B816-17F1D9F68D62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalManagementSystem.Services", "HospitalManagementSystem.Services\HospitalManagementSystem.Services.csproj", "{02B094EE-88D4-4FE4-9B7F-111E8C8AC3FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HospitalManagementSystem.Services", "HospitalManagementSystem.Services\HospitalManagementSystem.Services.csproj", "{02B094EE-88D4-4FE4-9B7F-111E8C8AC3FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstWebAPI", "MyFirstWebAPI\MyFirstWebAPI.csproj", "{339D12F7-8F21-4573-BEB3-D97212EF822A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstWebAPIWithSwagger", "MyFirstWebAPIWithSwagger\MyFirstWebAPIWithSwagger.csproj", "{F1B48C71-2056-414D-BB99-74CAE1CB27EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{02B094EE-88D4-4FE4-9B7F-111E8C8AC3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02B094EE-88D4-4FE4-9B7F-111E8C8AC3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02B094EE-88D4-4FE4-9B7F-111E8C8AC3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{339D12F7-8F21-4573-BEB3-D97212EF822A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{339D12F7-8F21-4573-BEB3-D97212EF822A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{339D12F7-8F21-4573-BEB3-D97212EF822A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{339D12F7-8F21-4573-BEB3-D97212EF822A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B48C71-2056-414D-BB99-74CAE1CB27EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B48C71-2056-414D-BB99-74CAE1CB27EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B48C71-2056-414D-BB99-74CAE1CB27EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B48C71-2056-414D-BB99-74CAE1CB27EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

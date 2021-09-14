@@ -65,7 +65,8 @@ namespace HospitalManagementSystem.Services.Services
             //}
             using (var _context = new UserDefinedDbContext())
             {
-                return await _context.Users.Where(user => user.IsActive != false).ToListAsync();
+                //return await _context.Users.Where(user => user.IsActive != false).ToListAsync();
+                return await _context.Users.OrderBy(user => user.Number).ThenBy(user=>user.Role).ToListAsync();
             }
         }
 

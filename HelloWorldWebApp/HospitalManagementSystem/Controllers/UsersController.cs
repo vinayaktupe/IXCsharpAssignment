@@ -14,8 +14,8 @@ using Microsoft.Extensions.Logging;
 
 namespace HospitalManagementSystem.Controllers
 {
-    //[Route("User")]
-    //[Route("user")]
+    ////[Route("User")]
+    ////[Route("user")]
     public class UsersController : Controller
     {
         private readonly ILogger<UsersController> _logger;
@@ -33,7 +33,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
         // GET: Users
-        [Route("user/index")]
+        //[Route("user/index")]
         //[Route("user/Index")]
         public async Task<IActionResult> Index()
         {
@@ -52,7 +52,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
         // GET: Users/Details/5
-        [HttpGet("user/details/{id?}")]
+        //[HttpGet("user/details/{id?}")]
         public async Task<IActionResult> Details(int id)
         {
             if (id == 0)
@@ -82,7 +82,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
         // GET: Users/Create
-        [HttpGet("user/create")]
+        //[HttpGet("user/create")]
         public IActionResult Create()
         {
             return View();
@@ -122,7 +122,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
         // GET: Users/Edit/5
-        [HttpGet("user/edit/{id?}")]
+        //[HttpGet("user/edit/{id?}")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == 0)
@@ -202,7 +202,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
         // GET: Users/Delete/5
-        [HttpGet("user/delete/{id?}")]
+        //[HttpGet("user/delete/{id?}")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id == 0)

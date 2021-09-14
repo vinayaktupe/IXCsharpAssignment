@@ -77,14 +77,14 @@ namespace HospitalManagementSystem
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute(
-                    name: "user",
-                    pattern: "{action=Index}/{controller=Users}"
-                    );
-                endpoints.MapControllerRoute(
-                    name: "user",
-                    pattern: "{action=Details}/{controller=Users}/{id}"
-                    );
+                //endpoints.MapControllerRoute(
+                //    name: "user",
+                //    pattern: "{action=Index}/{controller=Users}"
+                //    );
+                //endpoints.MapControllerRoute(
+                //    name: "user",
+                //    pattern: "{action=Details}/{controller=Users}/{id}"
+                //    );
 
                 endpoints.MapRazorPages();
             });
